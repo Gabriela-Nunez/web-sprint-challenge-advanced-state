@@ -12,10 +12,12 @@ function Quiz(props) {
   const { quiz, selectedAnswer, selectAnswer, answerId } = props;
   const dispatch = useDispatch();
 
+  if(quiz === null){
   useEffect(() => {
     dispatch(fetchQuiz());
   }, []);
-
+  }
+  
   const onClickHandler = (number) => {
     dispatch(selectAnswer(quiz.answers[number].answer_id));
   };
