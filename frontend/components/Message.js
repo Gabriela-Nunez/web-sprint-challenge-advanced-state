@@ -8,6 +8,7 @@ function Message(props) {
 
 const mapStateToProps = state => {
   return {
+    ...state,
     message: state.infoMessage
   }
 }

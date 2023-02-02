@@ -7,7 +7,7 @@ import { dispatch } from "react";
 export function Form(props) {
   const { inputChange, newQuestion, newTrueAnswer, newFalseAnswer, postQuiz, form } =
     props;
-
+  
 
   const onChange = (evt) => {
     inputChange(evt.target.id, evt.target.value);
@@ -15,9 +15,6 @@ export function Form(props) {
   const onSubmit = (evt) => {
     evt.preventDefault();
     const payload = {
-      question_text: newQuestion,
-      true_answer_text: newTrueAnswer,
-      false_answer_text: newFalseAnswer,
       question_text: form.newQuestion,
       true_answer_text: form.newTrueAnswer,
       false_answer_text: form.newFalseAnswer,
@@ -29,9 +26,6 @@ export function Form(props) {
     newQuestion.trim().length > 0 &&
     newTrueAnswer.trim().length > 0 &&
     newFalseAnswer.trim().length > 0;
-    form.newQuestion.trim().length > 0 &&
-    form.newTrueAnswer.trim().length > 0 &&
-    form.newFalseAnswer.trim().length > 0;
 
   return (
     <form id="form" onSubmit={onSubmit}>
@@ -40,18 +34,21 @@ export function Form(props) {
         maxLength={50}
         onChange={onChange}
         id="newQuestion"
+        value={form.newQuestion}
         placeholder="Enter question"
       />
       <input
         maxLength={50}
         onChange={onChange}
         id="newTrueAnswer"
+        value={form.newTrueAnswer}
         placeholder="Enter true answer"
       />
       <input
         maxLength={50}
         onChange={onChange}
         id="newFalseAnswer"
+        value={form.newFalseAnswer}
         placeholder="Enter false answer"
       />
       <button id="submitNewQuizBtn" disabled={!disabled}>

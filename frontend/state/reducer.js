@@ -59,7 +59,12 @@ function form(state = initialFormState, action) {
         [action.name]: action.payload
       };
       case types.RESET_FORM:
-        return initialFormState;
+        return {
+          ...state,
+          newQuestion: '',
+          newTrueAnswer: '',
+          newFalseAnswer: ''
+        }
       default:
         return state;
   }

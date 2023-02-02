@@ -60,7 +60,7 @@ export function postAnswer(payload) {
       dispatch(fetchQuiz());
       dispatch(selectAnswer(null));
       dispatch(setMessage(res.data.message));
-    });
+    }, []);
   };
 }
 
@@ -76,6 +76,6 @@ export function postQuiz(payload) {
         setMessage(`Congrats: "${res.data.question}" is a great question!`)
       );
       dispatch(resetForm(true));
-    });
+    }, []);
   };
 }
