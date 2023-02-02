@@ -1,7 +1,7 @@
 import * as types from './action-types';
 // ❗ You don't need to add extra reducers to achieve MVP
 import { combineReducers } from 'redux'
-import { moveClockwise } from './action-creators';
+
 
 const initialWheelState = 0
 function wheel(state = initialWheelState, action) {
@@ -28,11 +28,21 @@ function quiz(state = initialQuizState, action) {
 
 const initialSelectedAnswerState = null
 function selectedAnswer(state = initialSelectedAnswerState, action) {
-  return state
+  switch (action.type) {
+    case types.SET_SELECTED_ANSWER:
+      return action.payload;
+      default:
+        return state;
+  }
+
 }
 
 const initialMessageState = ''
 function infoMessage(state = initialMessageState, action) {
+  switch (action.type) {
+    case types.SET_INFO_MESSAGE:
+      return action.payload
+  }
   return state
 }
 
@@ -44,10 +54,12 @@ const initialFormState = {
 function form(state = initialFormState, action) {
   switch (action.type) {
     case types.INPUT_CHANGE:
-      const { name, value } = action.payload
       return {
-        ...state, [name]: value
-      }
+        ...state, 
+        [action.name]: action.payload
+      };
+      case types.RESET_FORM:
+        return initialFormState;
       default:
         return state;
   }
